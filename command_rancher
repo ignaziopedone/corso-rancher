@@ -1,0 +1,4 @@
+helm install rancher rancher-stable/rancher \
+  --namespace cattle-system \
+  --set hostname=rancher.10.200.0.238.nip.io \
+  --set bootstrapPassword=admin
