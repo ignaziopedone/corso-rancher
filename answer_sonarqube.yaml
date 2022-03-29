@@ -1,0 +1,150 @@
+OpenShift:
+  createSCC: true
+  enabled: false
+affinity: {}
+annotations: {}
+containerSecurityContext:
+  runAsUser: 1000
+deploymentStrategy: {}
+deploymentType: StatefulSet
+elasticsearch:
+  bootstrapChecks: true
+  configureNode: true
+emptyDir: {}
+extraConfig:
+  configmaps: []
+  secrets: []
+extraInitContainers: {}
+hostAliases: []
+image:
+  pullPolicy: IfNotPresent
+  repository: sonarqube
+  tag: 8.9.7-community
+ingress:
+  annotations: {}
+  enabled: true
+  hosts:
+    - name: sonarqube.10.200.0.238.nip.io
+      path: /
+  tls: []
+initContainers:
+  resources: {}
+initFs:
+  enabeld: true
+  securityContext:
+    privileged: true
+initSysctl:
+  enabled: true
+  fsFileMax: 131072
+  nofile: 131072
+  nproc: 8192
+  securityContext:
+    privileged: true
+  vmMaxMapCount: 524288
+jdbcDatabaseType: postgresql
+jvmCeOpts: ''
+jvmOpts: ''
+livenessProbe:
+  failureThreshold: 6
+  initialDelaySeconds: 60
+  periodSeconds: 30
+  sonarWebContext: /
+monitoringPasscode: define_it
+nginx:
+  enabled: false
+nodeSelector: {}
+persistence:
+  accessMode: ReadWriteOnce
+  annotations: {}
+  enabled: false
+  mounts: []
+  size: 5Gi
+  storageClass: null
+  uid: 1000
+  volumes: []
+plugins:
+  install: []
+  lib: []
+  noCheckCertificate: false
+  securityContext:
+    runAsGroup: 1000
+    runAsUser: 1000
+podLabels: {}
+postgresql:
+  enabled: true
+  persistence:
+    accessMode: ReadWriteOnce
+    enabled: true
+    size: 2Gi
+    storageClass: null
+  postgresqlDatabase: sonarDB
+  postgresqlPassword: sonarPass
+  postgresqlUsername: sonarUser
+  resources:
+    limits:
+      cpu: 2
+      memory: 2Gi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+  securityContext:
+    enabled: true
+    fsGroup: 1001
+    runAsUser: 1001
+  service:
+    port: 5432
+  serviceAccount:
+    enabled: false
+  shmVolume:
+    chmod:
+      enabled: false
+  volumePermissions:
+    enabled: false
+    securityContext:
+      runAsUser: 0
+prometheusExporter:
+  ceBeanPort: 8001
+  config:
+    rules:
+      - pattern: .*
+  enabled: true
+  noCheckCertificate: false
+  securityContext:
+    runAsGroup: 0
+    runAsUser: 0
+  version: 0.15.0
+  webBeanPort: 8000
+readinessProbe:
+  failureThreshold: 6
+  initialDelaySeconds: 60
+  periodSeconds: 30
+  sonarWebContext: /
+replicaCount: 1
+resources:
+  limits:
+    cpu: 800m
+    memory: 4096M
+  requests:
+    cpu: 400m
+    memory: 2Gi
+securityContext:
+  fsGroup: 1000
+service:
+  annotations: {}
+  externalPort: 9000
+  internalPort: 9000
+  labels: null
+  type: ClusterIP
+serviceAccount:
+  annotations: {}
+  create: false
+sonarqubeFolder: /opt/sonarqube
+startupProbe:
+  failureThreshold: 24
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  sonarWebContext: /
+terminationGracePeriodSeconds: 60
+tests:
+  enabled: true
+tolerations: []
