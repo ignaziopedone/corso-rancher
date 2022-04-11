@@ -20,9 +20,3 @@ spec:
     - http01:
         ingress:
           class: nginx
-
-Create the above file “cluster-issuer.yaml”
-
-And then:
-
-kubectl create -f cluster-issuer.yaml
